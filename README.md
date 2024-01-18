@@ -10,7 +10,7 @@ The Revert Python Library provides convenient access to the Revert API from appl
 # Installation
 
 ```sh
-pip install --upgrade revertdotdev/python
+pip install --upgrade revert-api
 ```
 <!-- End Installation  -->
 

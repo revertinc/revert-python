@@ -12,8 +12,8 @@ class BaseClientWrapper:
     def get_headers(self) -> typing.Dict[str, str]:
         headers: typing.Dict[str, str] = {
             "X-Fern-Language": "Python",
-            "X-Fern-SDK-Name": "revertdotdev/python",
-            "X-Fern-SDK-Version": "0.0.584",
+            "X-Fern-SDK-Name": "revert-api",
+            "X-Fern-SDK-Version": "0.0.585",
         }
         return headers
 
