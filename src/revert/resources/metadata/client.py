@@ -34,7 +34,7 @@ class MetadataClient:
             headers=remove_none_from_dict(
                 {**self._client_wrapper.get_headers(), "x-revert-public-token": x_revert_public_token}
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CrmMetadataResponse, _response.json())  # type: ignore
@@ -66,7 +66,7 @@ class AsyncMetadataClient:
             headers=remove_none_from_dict(
                 {**self._client_wrapper.get_headers(), "x-revert-public-token": x_revert_public_token}
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CrmMetadataResponse, _response.json())  # type: ignore

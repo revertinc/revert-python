@@ -61,7 +61,7 @@ class FieldMappingClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetFieldMappingResponse, _response.json())  # type: ignore
@@ -111,7 +111,7 @@ class FieldMappingClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateFieldMappingResponse, _response.json())  # type: ignore
@@ -164,7 +164,7 @@ class AsyncFieldMappingClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetFieldMappingResponse, _response.json())  # type: ignore
@@ -214,7 +214,7 @@ class AsyncFieldMappingClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateFieldMappingResponse, _response.json())  # type: ignore

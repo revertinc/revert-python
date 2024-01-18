@@ -61,7 +61,7 @@ class PropertiesClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetObjectPropertiesResponse, _response.json())  # type: ignore
@@ -112,7 +112,7 @@ class PropertiesClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SetObjectPropertiesResponse, _response.json())  # type: ignore
@@ -164,7 +164,7 @@ class AsyncPropertiesClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetObjectPropertiesResponse, _response.json())  # type: ignore
@@ -215,7 +215,7 @@ class AsyncPropertiesClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SetObjectPropertiesResponse, _response.json())  # type: ignore

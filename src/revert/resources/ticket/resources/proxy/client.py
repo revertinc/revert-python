@@ -60,7 +60,7 @@ class ProxyClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ProxyResponse, _response.json())  # type: ignore
@@ -113,7 +113,7 @@ class AsyncProxyClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ProxyResponse, _response.json())  # type: ignore

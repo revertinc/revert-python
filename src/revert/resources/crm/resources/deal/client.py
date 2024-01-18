@@ -66,7 +66,7 @@ class DealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetDealResponse, _response.json())  # type: ignore
@@ -120,7 +120,7 @@ class DealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetDealsResponse, _response.json())  # type: ignore
@@ -168,7 +168,7 @@ class DealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateDealResponse, _response.json())  # type: ignore
@@ -219,7 +219,7 @@ class DealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateDealResponse, _response.json())  # type: ignore
@@ -271,7 +271,7 @@ class DealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SearchDealsResponse, _response.json())  # type: ignore
@@ -327,7 +327,7 @@ class AsyncDealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetDealResponse, _response.json())  # type: ignore
@@ -381,7 +381,7 @@ class AsyncDealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetDealsResponse, _response.json())  # type: ignore
@@ -429,7 +429,7 @@ class AsyncDealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateDealResponse, _response.json())  # type: ignore
@@ -480,7 +480,7 @@ class AsyncDealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateDealResponse, _response.json())  # type: ignore
@@ -532,7 +532,7 @@ class AsyncDealClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SearchDealsResponse, _response.json())  # type: ignore

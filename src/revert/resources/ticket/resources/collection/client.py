@@ -61,7 +61,7 @@ class CollectionClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCollectionsResponse, _response.json())  # type: ignore
@@ -120,7 +120,7 @@ class AsyncCollectionClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCollectionsResponse, _response.json())  # type: ignore

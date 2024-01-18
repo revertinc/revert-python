@@ -66,7 +66,7 @@ class TaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetTaskResponse, _response.json())  # type: ignore
@@ -120,7 +120,7 @@ class TaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetTasksResponse, _response.json())  # type: ignore
@@ -166,7 +166,7 @@ class TaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateTaskResponse, _response.json())  # type: ignore
@@ -217,7 +217,7 @@ class TaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateTaskResponse, _response.json())  # type: ignore
@@ -275,7 +275,7 @@ class AsyncTaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetTaskResponse, _response.json())  # type: ignore
@@ -329,7 +329,7 @@ class AsyncTaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetTasksResponse, _response.json())  # type: ignore
@@ -375,7 +375,7 @@ class AsyncTaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateTaskResponse, _response.json())  # type: ignore
@@ -426,7 +426,7 @@ class AsyncTaskClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateTaskResponse, _response.json())  # type: ignore

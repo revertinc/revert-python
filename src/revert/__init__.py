@@ -18,7 +18,7 @@ from .resources import (
     metadata,
     ticket,
 )
-from .environment import RevertRevertApiEnvironment
+from .environment import RevertEnvironment
 
 __all__ = [
     "CreateConnectionWebhookRequest",
@@ -31,7 +31,7 @@ __all__ = [
     "GetAllConnectionResponse",
     "GetConnectionResponse",
     "GetConnectionWebhookResponse",
-    "RevertRevertApiEnvironment",
+    "RevertEnvironment",
     "chat",
     "common",
     "connection",

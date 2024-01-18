@@ -67,7 +67,7 @@ class ContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetContactResponse, _response.json())  # type: ignore
@@ -121,7 +121,7 @@ class ContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetContactsResponse, _response.json())  # type: ignore
@@ -169,7 +169,7 @@ class ContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateContactResponse, _response.json())  # type: ignore
@@ -222,7 +222,7 @@ class ContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateContactResponse, _response.json())  # type: ignore
@@ -276,7 +276,7 @@ class ContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SearchContactsResponse, _response.json())  # type: ignore
@@ -332,7 +332,7 @@ class AsyncContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetContactResponse, _response.json())  # type: ignore
@@ -386,7 +386,7 @@ class AsyncContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetContactsResponse, _response.json())  # type: ignore
@@ -434,7 +434,7 @@ class AsyncContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateContactResponse, _response.json())  # type: ignore
@@ -487,7 +487,7 @@ class AsyncContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateContactResponse, _response.json())  # type: ignore
@@ -541,7 +541,7 @@ class AsyncContactClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SearchContactsResponse, _response.json())  # type: ignore

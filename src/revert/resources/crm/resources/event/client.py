@@ -67,7 +67,7 @@ class EventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetEventResponse, _response.json())  # type: ignore
@@ -121,7 +121,7 @@ class EventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetEventsResponse, _response.json())  # type: ignore
@@ -169,7 +169,7 @@ class EventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateEventResponse, _response.json())  # type: ignore
@@ -220,7 +220,7 @@ class EventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateEventResponse, _response.json())  # type: ignore
@@ -272,7 +272,7 @@ class EventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SearchEventsResponse, _response.json())  # type: ignore
@@ -314,7 +314,7 @@ class EventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(DeleteEventResponse, _response.json())  # type: ignore
@@ -370,7 +370,7 @@ class AsyncEventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetEventResponse, _response.json())  # type: ignore
@@ -424,7 +424,7 @@ class AsyncEventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetEventsResponse, _response.json())  # type: ignore
@@ -472,7 +472,7 @@ class AsyncEventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateEventResponse, _response.json())  # type: ignore
@@ -523,7 +523,7 @@ class AsyncEventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateEventResponse, _response.json())  # type: ignore
@@ -575,7 +575,7 @@ class AsyncEventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(SearchEventsResponse, _response.json())  # type: ignore
@@ -617,7 +617,7 @@ class AsyncEventClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(DeleteEventResponse, _response.json())  # type: ignore

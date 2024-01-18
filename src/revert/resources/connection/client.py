@@ -57,7 +57,7 @@ class ConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetConnectionResponse, _response.json())  # type: ignore
@@ -97,7 +97,7 @@ class ConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(DeleteConnectionResponse, _response.json())  # type: ignore
@@ -134,7 +134,7 @@ class ConnectionClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetAllConnectionResponse, _response.json())  # type: ignore
@@ -182,7 +182,7 @@ class ConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateConnectionWebhookResponse, _response.json())  # type: ignore
@@ -222,7 +222,7 @@ class ConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetConnectionWebhookResponse, _response.json())  # type: ignore
@@ -262,7 +262,7 @@ class ConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(DeleteConnectionWebhookResponse, _response.json())  # type: ignore
@@ -307,7 +307,7 @@ class AsyncConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetConnectionResponse, _response.json())  # type: ignore
@@ -347,7 +347,7 @@ class AsyncConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(DeleteConnectionResponse, _response.json())  # type: ignore
@@ -384,7 +384,7 @@ class AsyncConnectionClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetAllConnectionResponse, _response.json())  # type: ignore
@@ -432,7 +432,7 @@ class AsyncConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateConnectionWebhookResponse, _response.json())  # type: ignore
@@ -472,7 +472,7 @@ class AsyncConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetConnectionWebhookResponse, _response.json())  # type: ignore
@@ -512,7 +512,7 @@ class AsyncConnectionClient:
                     "x-revert-t-id": x_revert_t_id,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(DeleteConnectionWebhookResponse, _response.json())  # type: ignore

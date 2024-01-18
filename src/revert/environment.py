@@ -3,7 +3,7 @@
 import enum
 
 
-class RevertRevertApiEnvironment(enum.Enum):
+class RevertEnvironment(enum.Enum):
     PRODUCTION = "https://api.revert.dev"
     STAGING = "https://api-staging.revert.dev"
     """

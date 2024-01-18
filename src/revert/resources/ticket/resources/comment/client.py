@@ -65,7 +65,7 @@ class CommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCommentResponse, _response.json())  # type: ignore
@@ -119,7 +119,7 @@ class CommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCommentsResponse, _response.json())  # type: ignore
@@ -167,7 +167,7 @@ class CommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateCommentResponse, _response.json())  # type: ignore
@@ -218,7 +218,7 @@ class CommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateCommentResponse, _response.json())  # type: ignore
@@ -274,7 +274,7 @@ class AsyncCommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCommentResponse, _response.json())  # type: ignore
@@ -328,7 +328,7 @@ class AsyncCommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCommentsResponse, _response.json())  # type: ignore
@@ -376,7 +376,7 @@ class AsyncCommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateCommentResponse, _response.json())  # type: ignore
@@ -427,7 +427,7 @@ class AsyncCommentClient:
                     "x-api-version": x_api_version,
                 }
             ),
-            timeout=60,
+            timeout=None,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateOrUpdateCommentResponse, _response.json())  # type: ignore

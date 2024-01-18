@@ -18,9 +18,9 @@ pip install --upgrade revert-api
 # Usage
 
 ```python
-from revert.client import RevertRevertApi
+from revert.client import Revert
 
-client = RevertRevertApi()
+client = Revert()
 ```
 <!-- End Usage  -->
 
@@ -28,9 +28,9 @@ client = RevertRevertApi()
 # Async Client
 
 ```python
-from revert.client import AsyncRevertRevertApi
+from revert.client import AsyncRevert
 
-client = AsyncRevertRevertApi()
+client = AsyncRevert()
 ```
 <!-- End Async Usage  -->
 

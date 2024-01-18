@@ -5,7 +5,7 @@ import typing
 import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
-from .environment import RevertRevertApiEnvironment
+from .environment import RevertEnvironment
 from .resources.chat.client import AsyncChatClient, ChatClient
 from .resources.connection.client import AsyncConnectionClient, ConnectionClient
 from .resources.crm.client import AsyncCrmClient, CrmClient
@@ -13,13 +13,13 @@ from .resources.metadata.client import AsyncMetadataClient, MetadataClient
 from .resources.ticket.client import AsyncTicketClient, TicketClient
 
 
-class RevertRevertApi:
+class Revert:
     def __init__(
         self,
         *,
         base_url: typing.Optional[str] = None,
-        environment: RevertRevertApiEnvironment = RevertRevertApiEnvironment.PRODUCTION,
-        timeout: typing.Optional[float] = 60,
+        environment: RevertEnvironment = RevertEnvironment.PRODUCTION,
+        timeout: typing.Optional[float] = None,
         httpx_client: typing.Optional[httpx.Client] = None
     ):
         self._client_wrapper = SyncClientWrapper(
@@ -33,13 +33,13 @@ class RevertRevertApi:
         self.ticket = TicketClient(client_wrapper=self._client_wrapper)
 
 
-class AsyncRevertRevertApi:
+class AsyncRevert:
     def __init__(
         self,
         *,
         base_url: typing.Optional[str] = None,
-        environment: RevertRevertApiEnvironment = RevertRevertApiEnvironment.PRODUCTION,
-        timeout: typing.Optional[float] = 60,
+        environment: RevertEnvironment = RevertEnvironment.PRODUCTION,
+        timeout: typing.Optional[float] = None,
         httpx_client: typing.Optional[httpx.AsyncClient] = None
     ):
         self._client_wrapper = AsyncClientWrapper(
@@ -53,7 +53,7 @@ class AsyncRevertRevertApi:
         self.ticket = AsyncTicketClient(client_wrapper=self._client_wrapper)
 
 
-def _get_base_url(*, base_url: typing.Optional[str] = None, environment: RevertRevertApiEnvironment) -> str:
+def _get_base_url(*, base_url: typing.Optional[str] = None, environment: RevertEnvironment) -> str:
     if base_url is not None:
         return base_url
     elif environment is not None:
