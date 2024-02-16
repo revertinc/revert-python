@@ -3,6 +3,7 @@
 from .types import (
     Account,
     App,
+    AppConfig,
     Connection,
     ResponseStatus,
     RevertUser,
@@ -50,6 +51,7 @@ from .unified import (
 __all__ = [
     "Account",
     "App",
+    "AppConfig",
     "BadRequestError",
     "BaseError",
     "Channel",

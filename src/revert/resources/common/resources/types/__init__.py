@@ -3,6 +3,7 @@
 from .types import (
     Account,
     App,
+    AppConfig,
     Connection,
     ResponseStatus,
     RevertUser,
@@ -15,6 +16,7 @@ from .types import (
 __all__ = [
     "Account",
     "App",
+    "AppConfig",
     "Connection",
     "ResponseStatus",
     "RevertUser",

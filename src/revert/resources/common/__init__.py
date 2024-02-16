@@ -3,6 +3,7 @@
 from .resources import (
     Account,
     App,
+    AppConfig,
     BadRequestError,
     BaseError,
     Channel,
@@ -53,6 +54,7 @@ from .resources import (
 __all__ = [
     "Account",
     "App",
+    "AppConfig",
     "BadRequestError",
     "BaseError",
     "Channel",

@@ -2,6 +2,7 @@
 
 from .account import Account
 from .app import App
+from .app_config import AppConfig
 from .connection import Connection
 from .response_status import ResponseStatus
 from .revert_user import RevertUser
@@ -13,6 +14,7 @@ from .tpid import Tpid
 __all__ = [
     "Account",
     "App",
+    "AppConfig",
     "Connection",
     "ResponseStatus",
     "RevertUser",

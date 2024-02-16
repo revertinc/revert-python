@@ -12,6 +12,10 @@ except ImportError:
 
 
 class UserWrite(pydantic.BaseModel):
+    """
+    Include the "businessUnitId" in the "additional" section, as it is a mandatory field for Microsoft Dynamics Sales.
+    """
+
     first_name: str = pydantic.Field(alias="firstName", description="The first name of a user in a CRM.")
     last_name: str = pydantic.Field(alias="lastName", description="The last name of a user in a CRM.")
     phone: str = pydantic.Field(description="The phone number of a user in a CRM.")

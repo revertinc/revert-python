@@ -12,6 +12,8 @@ class Tpid(str, enum.Enum):
     SFDC = "sfdc"
     PIPEDRIVE = "pipedrive"
     SLACK = "slack"
+    CLOSECRM = "closecrm"
+    MS_DYNAMICS_365_SALES = "ms_dynamics_365_sales"
 
     def visit(
         self,
@@ -20,6 +22,8 @@ class Tpid(str, enum.Enum):
         sfdc: typing.Callable[[], T_Result],
         pipedrive: typing.Callable[[], T_Result],
         slack: typing.Callable[[], T_Result],
+        closecrm: typing.Callable[[], T_Result],
+        ms_dynamics_365_sales: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is Tpid.HUBSPOT:
             return hubspot()
@@ -31,3 +35,7 @@ class Tpid(str, enum.Enum):
             return pipedrive()
         if self is Tpid.SLACK:
             return slack()
+        if self is Tpid.CLOSECRM:
+            return closecrm()
+        if self is Tpid.MS_DYNAMICS_365_SALES:
+            return ms_dynamics_365_sales()
