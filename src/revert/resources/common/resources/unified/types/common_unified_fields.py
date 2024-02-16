@@ -22,7 +22,7 @@ class CommonUnifiedFields(pydantic.BaseModel):
     updated_timestamp: typing.Any = pydantic.Field(
         alias="updatedTimestamp", description="The last updated timestamp of the object."
     )
-    additional: typing.Any = pydantic.Field(
+    additional: typing.Optional[typing.Any] = pydantic.Field(
         description="Any fields that are not unified yet/non-unifiable come inside this `json` object."
     )
 

@@ -6,8 +6,17 @@ import typing
 from ......core.datetime_utils import serialize_datetime
 from .....common.resources.unified.types.user_write import UserWrite
 
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
+
 
 class CreateOrUpdateUserRequest(UserWrite):
+    additional: typing.Any = pydantic.Field(
+        description="Any fields that are not unified yet/non-unifiable come inside this `json` object."
+    )
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
