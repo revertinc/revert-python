@@ -5,10 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from .common_unified_fields import CommonUnifiedFields
-from .task_write import TaskWrite
+from .task_read import TaskRead
 
 
-class Task(CommonUnifiedFields, TaskWrite):
+class Task(CommonUnifiedFields, TaskRead):
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

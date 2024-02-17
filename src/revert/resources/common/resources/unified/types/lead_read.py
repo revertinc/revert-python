@@ -4,11 +4,19 @@ import datetime as dt
 import typing
 
 from ......core.datetime_utils import serialize_datetime
-from .common_unified_fields import CommonUnifiedFields
-from .lead_read import LeadRead
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
-class Lead(CommonUnifiedFields, LeadRead):
+class LeadRead(pydantic.BaseModel):
+    first_name: str = pydantic.Field(alias="firstName", description="The first name of the lead in a CRM.")
+    last_name: str = pydantic.Field(alias="lastName", description="The last name of the lead in a CRM.")
+    phone: str = pydantic.Field(description="The phone number of the lead in a CRM.")
+    email: str = pydantic.Field(description="The email of the lead in a CRM.")
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

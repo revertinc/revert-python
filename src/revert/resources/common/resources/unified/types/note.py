@@ -5,10 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from .common_unified_fields import CommonUnifiedFields
-from .note_write import NoteWrite
+from .note_read import NoteRead
 
 
-class Note(CommonUnifiedFields, NoteWrite):
+class Note(CommonUnifiedFields, NoteRead):
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

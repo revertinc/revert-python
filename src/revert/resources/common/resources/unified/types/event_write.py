@@ -5,23 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from ...associations.types.event_association import EventAssociation
-
-try:
-    import pydantic.v1 as pydantic  # type: ignore
-except ImportError:
-    import pydantic  # type: ignore
+from .event_read import EventRead
 
 
-class EventWrite(pydantic.BaseModel):
-    type: str = pydantic.Field(description="The type of the event in the CRM.")
-    subject: str = pydantic.Field(description="The Subject of the event/meeting in the CRM.")
-    start_date_time: str = pydantic.Field(alias="startDateTime", description="Event start date time.")
-    end_date_time: str = pydantic.Field(alias="endDateTime", description="Event end date time.")
-    is_all_day_event: bool = pydantic.Field(
-        alias="isAllDayEvent", description="Is `true` if the event is an all day event."
-    )
-    description: str = pydantic.Field(description="Description of the event/meeting.")
-    location: str = pydantic.Field(description="The location of the event/meeting.")
+class EventWrite(EventRead):
     associations: typing.Optional[EventAssociation]
 
     def json(self, **kwargs: typing.Any) -> str:

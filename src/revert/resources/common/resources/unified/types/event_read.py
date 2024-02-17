@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ......core.datetime_utils import serialize_datetime
-from ...associations.types.task_association import TaskAssociation
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,8 +11,16 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TaskWrite(pydantic.BaseModel):
-    associations: typing.Optional[TaskAssociation]
+class EventRead(pydantic.BaseModel):
+    type: str = pydantic.Field(description="The type of the event in the CRM.")
+    subject: str = pydantic.Field(description="The Subject of the event/meeting in the CRM.")
+    start_date_time: str = pydantic.Field(alias="startDateTime", description="Event start date time.")
+    end_date_time: str = pydantic.Field(alias="endDateTime", description="Event end date time.")
+    is_all_day_event: bool = pydantic.Field(
+        alias="isAllDayEvent", description="Is `true` if the event is an all day event."
+    )
+    description: str = pydantic.Field(description="Description of the event/meeting.")
+    location: str = pydantic.Field(description="The location of the event/meeting.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -26,4 +33,5 @@ class TaskWrite(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}

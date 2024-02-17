@@ -5,15 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from ...associations.types.deal_association import DealAssociation
-
-try:
-    import pydantic.v1 as pydantic  # type: ignore
-except ImportError:
-    import pydantic  # type: ignore
+from .note_read import NoteRead
 
 
-class NoteWrite(pydantic.BaseModel):
-    content: str = pydantic.Field(description="The contents of the note in plain text or HTML.")
+class NoteWrite(NoteRead):
     associations: typing.Optional[DealAssociation]
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -27,4 +22,5 @@ class NoteWrite(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}

@@ -4,11 +4,20 @@ import datetime as dt
 import typing
 
 from ......core.datetime_utils import serialize_datetime
-from .common_unified_fields import CommonUnifiedFields
-from .lead_read import LeadRead
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
-class Lead(CommonUnifiedFields, LeadRead):
+class TaskRead(pydantic.BaseModel):
+    subject: str = pydantic.Field(description="Subject of the task.")
+    body: str = pydantic.Field(description="Body of the task description.")
+    priority: str = pydantic.Field(description="The priority of the task in hand. (not supported by pipedrive)")
+    status: str = pydantic.Field(description="Completion status of the task.")
+    due_date: typing.Any = pydantic.Field(alias="dueDate", description="The date when this task is due.")
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

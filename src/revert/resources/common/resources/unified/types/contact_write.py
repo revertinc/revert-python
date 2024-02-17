@@ -5,18 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from ...associations.types.contact_association import ContactAssociation
-
-try:
-    import pydantic.v1 as pydantic  # type: ignore
-except ImportError:
-    import pydantic  # type: ignore
+from .contact_read import ContactRead
 
 
-class ContactWrite(pydantic.BaseModel):
-    first_name: str = pydantic.Field(alias="firstName", description="The first name of the contact in a CRM.")
-    last_name: str = pydantic.Field(alias="lastName", description="The last name of the contact in a CRM.")
-    phone: str = pydantic.Field(description="The phone number of the contact in a CRM.")
-    email: str = pydantic.Field(description="The email of the contact in a CRM.")
+class ContactWrite(ContactRead):
     associations: typing.Optional[ContactAssociation]
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -6,17 +6,23 @@ from .common_unified_fields import CommonUnifiedFields
 from .company import Company
 from .company_address import CompanyAddress
 from .contact import Contact
+from .contact_read import ContactRead
 from .contact_write import ContactWrite
 from .deal import Deal
+from .deal_read import DealRead
 from .deal_write import DealWrite
 from .event import Event
+from .event_read import EventRead
 from .event_write import EventWrite
 from .lead import Lead
+from .lead_read import LeadRead
 from .lead_write import LeadWrite
 from .message import Message
 from .note import Note
+from .note_read import NoteRead
 from .note_write import NoteWrite
 from .task import Task
+from .task_read import TaskRead
 from .task_ticket import TaskTicket
 from .task_ticket_write import TaskTicketWrite
 from .task_write import TaskWrite
@@ -31,17 +37,23 @@ __all__ = [
     "Company",
     "CompanyAddress",
     "Contact",
+    "ContactRead",
     "ContactWrite",
     "Deal",
+    "DealRead",
     "DealWrite",
     "Event",
+    "EventRead",
     "EventWrite",
     "Lead",
+    "LeadRead",
     "LeadWrite",
     "Message",
     "Note",
+    "NoteRead",
     "NoteWrite",
     "Task",
+    "TaskRead",
     "TaskTicket",
     "TaskTicketWrite",
     "TaskWrite",

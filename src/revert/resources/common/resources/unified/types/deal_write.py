@@ -5,28 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from ...associations.types.deal_association import DealAssociation
-
-try:
-    import pydantic.v1 as pydantic  # type: ignore
-except ImportError:
-    import pydantic  # type: ignore
+from .deal_read import DealRead
 
 
-class DealWrite(pydantic.BaseModel):
-    amount: int = pydantic.Field(description="The deal amount mentioned in the CRM for this deal.")
-    priority: typing.Optional[str] = pydantic.Field(
-        description="The priority attached to this deal. (not supported by pipedrive)"
-    )
-    stage: str = pydantic.Field(description="Deal stage in the CRM.")
-    name: str = pydantic.Field(description="The name of the deal in a CRM.")
-    expected_close_date: typing.Any = pydantic.Field(
-        alias="expectedCloseDate",
-        description="Expected close date for this deal. (not supported by pipedrive search api)",
-    )
-    is_won: bool = pydantic.Field(alias="isWon", description="Is `true` if the deal is closed (won).")
-    probability: int = pydantic.Field(
-        description="Probability of the deal getting closed, a decimal number between 0 to 1 (inclusive)."
-    )
+class DealWrite(DealRead):
     associations: typing.Optional[DealAssociation]
 
     def json(self, **kwargs: typing.Any) -> str:

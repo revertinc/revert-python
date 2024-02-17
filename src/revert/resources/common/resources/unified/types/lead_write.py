@@ -5,18 +5,10 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from ...associations.types.lead_association import LeadAssociation
-
-try:
-    import pydantic.v1 as pydantic  # type: ignore
-except ImportError:
-    import pydantic  # type: ignore
+from .lead_read import LeadRead
 
 
-class LeadWrite(pydantic.BaseModel):
-    first_name: str = pydantic.Field(alias="firstName", description="The first name of the lead in a CRM.")
-    last_name: str = pydantic.Field(alias="lastName", description="The last name of the lead in a CRM.")
-    phone: str = pydantic.Field(description="The phone number of the lead in a CRM.")
-    email: str = pydantic.Field(description="The email of the lead in a CRM.")
+class LeadWrite(LeadRead):
     associations: typing.Optional[LeadAssociation]
 
     def json(self, **kwargs: typing.Any) -> str:
