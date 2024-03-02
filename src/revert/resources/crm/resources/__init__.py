@@ -30,6 +30,18 @@ from .event import (
     GetEventsResponse,
     SearchEventsResponse,
 )
+from .field_mapping import (
+    CreateAccountFieldMappingRequestBody,
+    CreateAccountFieldMappingResponse,
+    CreateFieldMappingRequestBody,
+    CreateFieldMappingResponse,
+    DeleteAccountFieldMappingConfigResponse,
+    DeleteFieldMappingResponse,
+    FieldMappingType,
+    GetFieldMappingConfigResponse,
+    GetFieldMappingsResponse,
+    MappableFieldType,
+)
 from .lead import (
     CreateOrUpdateLeadRequest,
     CreateOrUpdateLeadResponse,
@@ -62,6 +74,10 @@ from .task import (
 from .user import CreateOrUpdateUserRequest, CreateOrUpdateUserResponse, GetUserResponse, GetUsersResponse
 
 __all__ = [
+    "CreateAccountFieldMappingRequestBody",
+    "CreateAccountFieldMappingResponse",
+    "CreateFieldMappingRequestBody",
+    "CreateFieldMappingResponse",
     "CreateOrUpdateCompanyRequest",
     "CreateOrUpdateCompanyResponse",
     "CreateOrUpdateContactRequest",
@@ -78,9 +94,12 @@ __all__ = [
     "CreateOrUpdateTaskResponse",
     "CreateOrUpdateUserRequest",
     "CreateOrUpdateUserResponse",
+    "DeleteAccountFieldMappingConfigResponse",
     "DeleteEventResponse",
+    "DeleteFieldMappingResponse",
     "FieldDetailsType",
     "FieldDetailsTypeRequest",
+    "FieldMappingType",
     "GetCompaniesResponse",
     "GetCompanyResponse",
     "GetContactResponse",
@@ -89,6 +108,8 @@ __all__ = [
     "GetDealsResponse",
     "GetEventResponse",
     "GetEventsResponse",
+    "GetFieldMappingConfigResponse",
+    "GetFieldMappingsResponse",
     "GetLeadResponse",
     "GetLeadsResponse",
     "GetNoteResponse",
@@ -98,6 +119,7 @@ __all__ = [
     "GetTasksResponse",
     "GetUserResponse",
     "GetUsersResponse",
+    "MappableFieldType",
     "PostProxyRequestBody",
     "ProxyResponse",
     "SearchCompaniesResponse",
