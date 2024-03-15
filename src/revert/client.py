@@ -9,6 +9,7 @@ from .environment import RevertEnvironment
 from .resources.chat.client import AsyncChatClient, ChatClient
 from .resources.connection.client import AsyncConnectionClient, ConnectionClient
 from .resources.crm.client import AsyncCrmClient, CrmClient
+from .resources.field_mapping.client import AsyncFieldMappingClient, FieldMappingClient
 from .resources.metadata.client import AsyncMetadataClient, MetadataClient
 from .resources.ticket.client import AsyncTicketClient, TicketClient
 
@@ -29,6 +30,7 @@ class Revert:
         self.chat = ChatClient(client_wrapper=self._client_wrapper)
         self.connection = ConnectionClient(client_wrapper=self._client_wrapper)
         self.crm = CrmClient(client_wrapper=self._client_wrapper)
+        self.field_mapping = FieldMappingClient(client_wrapper=self._client_wrapper)
         self.metadata = MetadataClient(client_wrapper=self._client_wrapper)
         self.ticket = TicketClient(client_wrapper=self._client_wrapper)
 
@@ -49,6 +51,7 @@ class AsyncRevert:
         self.chat = AsyncChatClient(client_wrapper=self._client_wrapper)
         self.connection = AsyncConnectionClient(client_wrapper=self._client_wrapper)
         self.crm = AsyncCrmClient(client_wrapper=self._client_wrapper)
+        self.field_mapping = AsyncFieldMappingClient(client_wrapper=self._client_wrapper)
         self.metadata = AsyncMetadataClient(client_wrapper=self._client_wrapper)
         self.ticket = AsyncTicketClient(client_wrapper=self._client_wrapper)
 

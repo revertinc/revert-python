@@ -2,6 +2,7 @@
 
 from .types import (
     FieldDetailsType,
+    FieldDetailsTypeRead,
     FieldDetailsTypeRequest,
     GetObjectPropertiesResponse,
     SetObjectPropertiesRequest,
@@ -10,6 +11,7 @@ from .types import (
 
 __all__ = [
     "FieldDetailsType",
+    "FieldDetailsTypeRead",
     "FieldDetailsTypeRequest",
     "GetObjectPropertiesResponse",
     "SetObjectPropertiesRequest",

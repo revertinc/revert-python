@@ -3,8 +3,7 @@
 import datetime as dt
 import typing
 
-from ......core.datetime_utils import serialize_datetime
-from .....common.resources.types.types.standard_object import StandardObject
+from ....core.datetime_utils import serialize_datetime
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,9 +11,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class MappableFieldType(pydantic.BaseModel):
-    field_name: str = pydantic.Field(alias="fieldName")
-    object_name: StandardObject = pydantic.Field(alias="objectName")
+class FieldMappingType(pydantic.BaseModel):
+    source_field_name: str = pydantic.Field(alias="sourceFieldName")
+    target_field_name: str = pydantic.Field(alias="targetFieldName")
+    object: str
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

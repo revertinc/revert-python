@@ -2,4 +2,6 @@
 
 import typing
 
-GetObjectPropertiesResponse = typing.Any
+from .field_details_type_read import FieldDetailsTypeRead
+
+GetObjectPropertiesResponse = typing.List[FieldDetailsTypeRead]

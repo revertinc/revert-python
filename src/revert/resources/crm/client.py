@@ -5,7 +5,6 @@ from .resources.company.client import AsyncCompanyClient, CompanyClient
 from .resources.contact.client import AsyncContactClient, ContactClient
 from .resources.deal.client import AsyncDealClient, DealClient
 from .resources.event.client import AsyncEventClient, EventClient
-from .resources.field_mapping.client import AsyncFieldMappingClient, FieldMappingClient
 from .resources.lead.client import AsyncLeadClient, LeadClient
 from .resources.note.client import AsyncNoteClient, NoteClient
 from .resources.properties.client import AsyncPropertiesClient, PropertiesClient
@@ -21,7 +20,6 @@ class CrmClient:
         self.contact = ContactClient(client_wrapper=self._client_wrapper)
         self.deal = DealClient(client_wrapper=self._client_wrapper)
         self.event = EventClient(client_wrapper=self._client_wrapper)
-        self.field_mapping = FieldMappingClient(client_wrapper=self._client_wrapper)
         self.lead = LeadClient(client_wrapper=self._client_wrapper)
         self.note = NoteClient(client_wrapper=self._client_wrapper)
         self.properties = PropertiesClient(client_wrapper=self._client_wrapper)
@@ -37,7 +35,6 @@ class AsyncCrmClient:
         self.contact = AsyncContactClient(client_wrapper=self._client_wrapper)
         self.deal = AsyncDealClient(client_wrapper=self._client_wrapper)
         self.event = AsyncEventClient(client_wrapper=self._client_wrapper)
-        self.field_mapping = AsyncFieldMappingClient(client_wrapper=self._client_wrapper)
         self.lead = AsyncLeadClient(client_wrapper=self._client_wrapper)
         self.note = AsyncNoteClient(client_wrapper=self._client_wrapper)
         self.properties = AsyncPropertiesClient(client_wrapper=self._client_wrapper)

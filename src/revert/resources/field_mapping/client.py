@@ -4,14 +4,14 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-from .....core.api_error import ApiError
-from .....core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
-from .....core.jsonable_encoder import jsonable_encoder
-from .....core.remove_none_from_dict import remove_none_from_dict
-from ....common.resources.errors.errors.internal_server_error import InternalServerError
-from ....common.resources.errors.errors.not_found_error import NotFoundError
-from ....common.resources.errors.errors.un_authorized_error import UnAuthorizedError
-from ....common.resources.errors.types.base_error import BaseError
+from ...core.api_error import ApiError
+from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
+from ...core.jsonable_encoder import jsonable_encoder
+from ...core.remove_none_from_dict import remove_none_from_dict
+from ..common.resources.errors.errors.internal_server_error import InternalServerError
+from ..common.resources.errors.errors.not_found_error import NotFoundError
+from ..common.resources.errors.errors.un_authorized_error import UnAuthorizedError
+from ..common.resources.errors.types.base_error import BaseError
 from .types.create_account_field_mapping_request_body import CreateAccountFieldMappingRequestBody
 from .types.create_account_field_mapping_response import CreateAccountFieldMappingResponse
 from .types.create_field_mapping_request_body import CreateFieldMappingRequestBody
@@ -35,35 +35,27 @@ class FieldMappingClient:
         self._client_wrapper = client_wrapper
 
     def get_field_mapping_config(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        self, *, x_revert_public_token: str, x_revert_t_id: str, x_revert_t_token: str
     ) -> GetFieldMappingConfigResponse:
         """
         Get field mappings configs for a connection
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_public_token: str. Your public key, to be used on the frontend usually.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
 
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_t_token: str. The temp used to identify tenant.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping"),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
+                    "x-revert-public-token": x_revert_public_token,
                     "x-revert-t-id": x_revert_t_id,
                     "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -80,36 +72,23 @@ class FieldMappingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_field_mappings(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
-    ) -> GetFieldMappingsResponse:
+    def get_field_mappings(self, *, x_revert_api_token: str, x_revert_t_id: str) -> GetFieldMappingsResponse:
         """
         Get field mappings for a connection
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping/mappings"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping/mappings"),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
                     "x-revert-api-token": x_revert_api_token,
                     "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -132,10 +111,9 @@ class FieldMappingClient:
         self,
         *,
         request: CreateFieldMappingRequestBody,
-        x_revert_api_token: typing.Optional[str] = None,
+        x_revert_public_token: str,
         x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        x_revert_t_token: str,
     ) -> CreateFieldMappingResponse:
         """
         Create field mappings for a connection after user input
@@ -143,25 +121,22 @@ class FieldMappingClient:
         Parameters:
             - request: CreateFieldMappingRequestBody.
 
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_public_token: str. Your public key, to be used on the frontend usually.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
 
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_t_token: str. The temp used to identify tenant.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping"),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
+                    "x-revert-public-token": x_revert_public_token,
                     "x-revert-t-id": x_revert_t_id,
                     "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -180,36 +155,23 @@ class FieldMappingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_field_mapping(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
-    ) -> DeleteFieldMappingResponse:
+    def delete_field_mapping(self, *, x_revert_api_token: str, x_revert_t_id: str) -> DeleteFieldMappingResponse:
         """
-        Delete field mappings for an account
+        Delete field mappings for a connection
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
         """
         _response = self._client_wrapper.httpx_client.request(
             "DELETE",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping"),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
                     "x-revert-api-token": x_revert_api_token,
                     "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -229,13 +191,7 @@ class FieldMappingClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def create_account_field_mapping_config(
-        self,
-        *,
-        request: CreateAccountFieldMappingRequestBody,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        self, *, request: CreateAccountFieldMappingRequestBody, x_revert_api_token: str
     ) -> CreateAccountFieldMappingResponse:
         """
         Create field mappings config for an account
@@ -243,26 +199,14 @@ class FieldMappingClient:
         Parameters:
             - request: CreateAccountFieldMappingRequestBody.
 
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
-
-            - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping/config"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping/config"),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
-                {
-                    **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
-                    "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
-                }
+                {**self._client_wrapper.get_headers(), "x-revert-api-token": x_revert_api_token}
             ),
             timeout=None,
         )
@@ -281,36 +225,19 @@ class FieldMappingClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def delete_account_field_mapping_config(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        self, *, x_revert_api_token: str
     ) -> DeleteAccountFieldMappingConfigResponse:
         """
         Delete field mappings config for an account
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
-
-            - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
         """
         _response = self._client_wrapper.httpx_client.request(
             "DELETE",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping/config"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping/config"),
             headers=remove_none_from_dict(
-                {
-                    **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
-                    "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
-                }
+                {**self._client_wrapper.get_headers(), "x-revert-api-token": x_revert_api_token}
             ),
             timeout=None,
         )
@@ -334,35 +261,27 @@ class AsyncFieldMappingClient:
         self._client_wrapper = client_wrapper
 
     async def get_field_mapping_config(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        self, *, x_revert_public_token: str, x_revert_t_id: str, x_revert_t_token: str
     ) -> GetFieldMappingConfigResponse:
         """
         Get field mappings configs for a connection
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_public_token: str. Your public key, to be used on the frontend usually.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
 
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_t_token: str. The temp used to identify tenant.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping"),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
+                    "x-revert-public-token": x_revert_public_token,
                     "x-revert-t-id": x_revert_t_id,
                     "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -379,36 +298,23 @@ class AsyncFieldMappingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_field_mappings(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
-    ) -> GetFieldMappingsResponse:
+    async def get_field_mappings(self, *, x_revert_api_token: str, x_revert_t_id: str) -> GetFieldMappingsResponse:
         """
         Get field mappings for a connection
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping/mappings"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping/mappings"),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
                     "x-revert-api-token": x_revert_api_token,
                     "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -431,10 +337,9 @@ class AsyncFieldMappingClient:
         self,
         *,
         request: CreateFieldMappingRequestBody,
-        x_revert_api_token: typing.Optional[str] = None,
+        x_revert_public_token: str,
         x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        x_revert_t_token: str,
     ) -> CreateFieldMappingResponse:
         """
         Create field mappings for a connection after user input
@@ -442,25 +347,22 @@ class AsyncFieldMappingClient:
         Parameters:
             - request: CreateFieldMappingRequestBody.
 
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_public_token: str. Your public key, to be used on the frontend usually.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
 
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_t_token: str. The temp used to identify tenant.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping"),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
+                    "x-revert-public-token": x_revert_public_token,
                     "x-revert-t-id": x_revert_t_id,
                     "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -479,36 +381,23 @@ class AsyncFieldMappingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_field_mapping(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
-    ) -> DeleteFieldMappingResponse:
+    async def delete_field_mapping(self, *, x_revert_api_token: str, x_revert_t_id: str) -> DeleteFieldMappingResponse:
         """
-        Delete field mappings for an account
+        Delete field mappings for a connection
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "DELETE",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping"),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
                     "x-revert-api-token": x_revert_api_token,
                     "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
                 }
             ),
             timeout=None,
@@ -528,13 +417,7 @@ class AsyncFieldMappingClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def create_account_field_mapping_config(
-        self,
-        *,
-        request: CreateAccountFieldMappingRequestBody,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        self, *, request: CreateAccountFieldMappingRequestBody, x_revert_api_token: str
     ) -> CreateAccountFieldMappingResponse:
         """
         Create field mappings config for an account
@@ -542,26 +425,14 @@ class AsyncFieldMappingClient:
         Parameters:
             - request: CreateAccountFieldMappingRequestBody.
 
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
-
-            - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping/config"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping/config"),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
-                {
-                    **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
-                    "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
-                }
+                {**self._client_wrapper.get_headers(), "x-revert-api-token": x_revert_api_token}
             ),
             timeout=None,
         )
@@ -580,36 +451,19 @@ class AsyncFieldMappingClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def delete_account_field_mapping_config(
-        self,
-        *,
-        x_revert_api_token: typing.Optional[str] = None,
-        x_revert_t_id: str,
-        x_revert_t_token: typing.Optional[str] = None,
-        x_api_version: typing.Optional[str] = None,
+        self, *, x_revert_api_token: str
     ) -> DeleteAccountFieldMappingConfigResponse:
         """
         Delete field mappings config for an account
 
         Parameters:
-            - x_revert_api_token: typing.Optional[str]. Your official API key for accessing revert apis.
-
-            - x_revert_t_id: str. The unique customer id used when the customer linked their account.
-
-            - x_revert_t_token: typing.Optional[str]. The temp used to identify tenant.
-
-            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "DELETE",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/field-mapping/config"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "field-mapping/config"),
             headers=remove_none_from_dict(
-                {
-                    **self._client_wrapper.get_headers(),
-                    "x-revert-api-token": x_revert_api_token,
-                    "x-revert-t-id": x_revert_t_id,
-                    "x-revert-t-token": x_revert_t_token,
-                    "x-api-version": x_api_version,
-                }
+                {**self._client_wrapper.get_headers(), "x-revert-api-token": x_revert_api_token}
             ),
             timeout=None,
         )

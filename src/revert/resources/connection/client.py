@@ -17,6 +17,7 @@ from .types.create_connection_webhook_response import CreateConnectionWebhookRes
 from .types.delete_connection_response import DeleteConnectionResponse
 from .types.delete_connection_webhook_response import DeleteConnectionWebhookResponse
 from .types.get_all_connection_response import GetAllConnectionResponse
+from .types.get_connect_status_response import GetConnectStatusResponse
 from .types.get_connection_response import GetConnectionResponse
 from .types.get_connection_webhook_response import GetConnectionWebhookResponse
 
@@ -278,6 +279,53 @@ class ConnectionClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def get_integration_status(
+        self,
+        revert_public_token: str,
+        *,
+        tenant_id: str,
+        x_revert_api_token: str,
+        x_api_version: typing.Optional[str] = None,
+    ) -> GetConnectStatusResponse:
+        """
+        Get the OAuth connection event status. This endpoint responds with a `http.ServerResponse` instead of `json`.
+
+        Parameters:
+            - revert_public_token: str.
+
+            - tenant_id: str.
+
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
+
+            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"connection/integration-status/{revert_public_token}"
+            ),
+            params=remove_none_from_dict({"tenantId": tenant_id}),
+            headers=remove_none_from_dict(
+                {
+                    **self._client_wrapper.get_headers(),
+                    "x-revert-api-token": x_revert_api_token,
+                    "x-api-version": x_api_version,
+                }
+            ),
+            timeout=None,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetConnectStatusResponse, _response.json())  # type: ignore
+        if _response.status_code == 401:
+            raise UnAuthorizedError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncConnectionClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -522,6 +570,53 @@ class AsyncConnectionClient:
             raise InternalServerError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_integration_status(
+        self,
+        revert_public_token: str,
+        *,
+        tenant_id: str,
+        x_revert_api_token: str,
+        x_api_version: typing.Optional[str] = None,
+    ) -> GetConnectStatusResponse:
+        """
+        Get the OAuth connection event status. This endpoint responds with a `http.ServerResponse` instead of `json`.
+
+        Parameters:
+            - revert_public_token: str.
+
+            - tenant_id: str.
+
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
+
+            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"connection/integration-status/{revert_public_token}"
+            ),
+            params=remove_none_from_dict({"tenantId": tenant_id}),
+            headers=remove_none_from_dict(
+                {
+                    **self._client_wrapper.get_headers(),
+                    "x-revert-api-token": x_revert_api_token,
+                    "x-api-version": x_api_version,
+                }
+            ),
+            timeout=None,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetConnectStatusResponse, _response.json())  # type: ignore
+        if _response.status_code == 401:
+            raise UnAuthorizedError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

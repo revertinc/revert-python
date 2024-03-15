@@ -3,7 +3,8 @@
 import datetime as dt
 import typing
 
-from ......core.datetime_utils import serialize_datetime
+from ....core.datetime_utils import serialize_datetime
+from .connection_status import ConnectionStatus
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,10 +12,12 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class FieldMappingType(pydantic.BaseModel):
-    source_field_name: str = pydantic.Field(alias="sourceFieldName")
-    target_field_name: str = pydantic.Field(alias="targetFieldName")
-    object: str
+class GetConnectStatusResponse(pydantic.BaseModel):
+    public_token: str = pydantic.Field(alias="publicToken")
+    status: ConnectionStatus
+    integration_name: str = pydantic.Field(alias="integrationName")
+    tenant_id: str = pydantic.Field(alias="tenantId")
+    tenant_secret_token: typing.Optional[str] = pydantic.Field(alias="tenantSecretToken")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -3,8 +3,8 @@
 import datetime as dt
 import typing
 
-from ......core.datetime_utils import serialize_datetime
-from .....common.resources.types.types.response_status import ResponseStatus
+from ....core.datetime_utils import serialize_datetime
+from .mappable_field_type import MappableFieldType
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,8 +12,9 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class DeleteAccountFieldMappingConfigResponse(pydantic.BaseModel):
-    status: ResponseStatus
+class CreateAccountFieldMappingRequestBody(pydantic.BaseModel):
+    allow_connection_override_custom_fields: bool
+    mappable_by_connection_field_list: typing.List[MappableFieldType]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
