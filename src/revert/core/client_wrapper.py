@@ -13,7 +13,7 @@ class BaseClientWrapper:
         headers: typing.Dict[str, str] = {
             "X-Fern-Language": "Python",
             "X-Fern-SDK-Name": "revert-api",
-            "X-Fern-SDK-Version": "0.0.783",
+            "X-Fern-SDK-Version": "0.0.785",
         }
         return headers
 
