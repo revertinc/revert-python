@@ -139,6 +139,7 @@ class TaskClient:
     def create_task(
         self,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateTaskRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -146,6 +147,8 @@ class TaskClient:
     ) -> CreateOrUpdateTaskResponse:
         """
         Parameters:
+            - fields: typing.Optional[str].
+
             - request: CreateOrUpdateTaskRequest.
 
             - x_revert_api_token: str. Your official API key for accessing revert apis.
@@ -157,6 +160,7 @@ class TaskClient:
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "ticket/tasks"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
@@ -186,6 +190,7 @@ class TaskClient:
         self,
         id: str,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateTaskRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -196,6 +201,8 @@ class TaskClient:
 
         Parameters:
             - id: str.
+
+            - fields: typing.Optional[str].
 
             - request: CreateOrUpdateTaskRequest.
 
@@ -208,6 +215,7 @@ class TaskClient:
         _response = self._client_wrapper.httpx_client.request(
             "PATCH",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"ticket/tasks/{id}"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
@@ -348,6 +356,7 @@ class AsyncTaskClient:
     async def create_task(
         self,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateTaskRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -355,6 +364,8 @@ class AsyncTaskClient:
     ) -> CreateOrUpdateTaskResponse:
         """
         Parameters:
+            - fields: typing.Optional[str].
+
             - request: CreateOrUpdateTaskRequest.
 
             - x_revert_api_token: str. Your official API key for accessing revert apis.
@@ -366,6 +377,7 @@ class AsyncTaskClient:
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "ticket/tasks"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
@@ -395,6 +407,7 @@ class AsyncTaskClient:
         self,
         id: str,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateTaskRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -405,6 +418,8 @@ class AsyncTaskClient:
 
         Parameters:
             - id: str.
+
+            - fields: typing.Optional[str].
 
             - request: CreateOrUpdateTaskRequest.
 
@@ -417,6 +432,7 @@ class AsyncTaskClient:
         _response = await self._client_wrapper.httpx_client.request(
             "PATCH",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"ticket/tasks/{id}"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {

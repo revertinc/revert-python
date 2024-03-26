@@ -138,6 +138,7 @@ class CommentClient:
     def create_comment(
         self,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateCommentRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -147,6 +148,8 @@ class CommentClient:
         Post comment
 
         Parameters:
+            - fields: typing.Optional[str].
+
             - request: CreateOrUpdateCommentRequest.
 
             - x_revert_api_token: str. Your official API key for accessing revert apis.
@@ -158,6 +161,7 @@ class CommentClient:
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "ticket/comments"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
@@ -187,6 +191,7 @@ class CommentClient:
         self,
         id: str,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateCommentRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -197,6 +202,8 @@ class CommentClient:
 
         Parameters:
             - id: str.
+
+            - fields: typing.Optional[str].
 
             - request: CreateOrUpdateCommentRequest.
 
@@ -209,6 +216,7 @@ class CommentClient:
         _response = self._client_wrapper.httpx_client.request(
             "PATCH",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"ticket/comments/{id}"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
@@ -347,6 +355,7 @@ class AsyncCommentClient:
     async def create_comment(
         self,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateCommentRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -356,6 +365,8 @@ class AsyncCommentClient:
         Post comment
 
         Parameters:
+            - fields: typing.Optional[str].
+
             - request: CreateOrUpdateCommentRequest.
 
             - x_revert_api_token: str. Your official API key for accessing revert apis.
@@ -367,6 +378,7 @@ class AsyncCommentClient:
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "ticket/comments"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
@@ -396,6 +408,7 @@ class AsyncCommentClient:
         self,
         id: str,
         *,
+        fields: typing.Optional[str] = None,
         request: CreateOrUpdateCommentRequest,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -406,6 +419,8 @@ class AsyncCommentClient:
 
         Parameters:
             - id: str.
+
+            - fields: typing.Optional[str].
 
             - request: CreateOrUpdateCommentRequest.
 
@@ -418,6 +433,7 @@ class AsyncCommentClient:
         _response = await self._client_wrapper.httpx_client.request(
             "PATCH",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"ticket/comments/{id}"),
+            params=remove_none_from_dict({"fields": fields}),
             json=jsonable_encoder(request),
             headers=remove_none_from_dict(
                 {
