@@ -20,6 +20,8 @@ from .types.get_all_connection_response import GetAllConnectionResponse
 from .types.get_connect_status_response import GetConnectStatusResponse
 from .types.get_connection_response import GetConnectionResponse
 from .types.get_connection_webhook_response import GetConnectionWebhookResponse
+from .types.import_connections_request_body import ImportConnectionsRequestBody
+from .types.import_connections_response import ImportConnectionsResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -326,6 +328,54 @@ class ConnectionClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def import_connections(
+        self,
+        *,
+        request: ImportConnectionsRequestBody,
+        x_revert_api_token: str,
+        x_api_version: typing.Optional[str] = None,
+        x_revert_t_id: str,
+    ) -> ImportConnectionsResponse:
+        """
+        Import multiple connections for a specific environment. Use this to bulk import connections as a one-time exercise.
+
+        Parameters:
+            - request: ImportConnectionsRequestBody.
+
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
+
+            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+
+            - x_revert_t_id: str. The unique customer id used when the customer linked their account.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "connection/import"),
+            json=jsonable_encoder(request),
+            headers=remove_none_from_dict(
+                {
+                    **self._client_wrapper.get_headers(),
+                    "x-revert-api-token": x_revert_api_token,
+                    "x-api-version": x_api_version,
+                    "x-revert-t-id": x_revert_t_id,
+                }
+            ),
+            timeout=None,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(ImportConnectionsResponse, _response.json())  # type: ignore
+        if _response.status_code == 401:
+            raise UnAuthorizedError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncConnectionClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -617,6 +667,54 @@ class AsyncConnectionClient:
             raise UnAuthorizedError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
         if _response.status_code == 500:
             raise InternalServerError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def import_connections(
+        self,
+        *,
+        request: ImportConnectionsRequestBody,
+        x_revert_api_token: str,
+        x_api_version: typing.Optional[str] = None,
+        x_revert_t_id: str,
+    ) -> ImportConnectionsResponse:
+        """
+        Import multiple connections for a specific environment. Use this to bulk import connections as a one-time exercise.
+
+        Parameters:
+            - request: ImportConnectionsRequestBody.
+
+            - x_revert_api_token: str. Your official API key for accessing revert apis.
+
+            - x_api_version: typing.Optional[str]. Optional Revert API version you're using. If missing we default to the latest version of the API.
+
+            - x_revert_t_id: str. The unique customer id used when the customer linked their account.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "connection/import"),
+            json=jsonable_encoder(request),
+            headers=remove_none_from_dict(
+                {
+                    **self._client_wrapper.get_headers(),
+                    "x-revert-api-token": x_revert_api_token,
+                    "x-api-version": x_api_version,
+                    "x-revert-t-id": x_revert_t_id,
+                }
+            ),
+            timeout=None,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(ImportConnectionsResponse, _response.json())  # type: ignore
+        if _response.status_code == 401:
+            raise UnAuthorizedError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(BaseError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

@@ -2,6 +2,7 @@
 
 from . import chat, common, connection, crm, field_mapping, metadata, ticket
 from .connection import (
+    ConnectionImport,
     ConnectionStatus,
     CreateConnectionWebhookRequest,
     CreateConnectionWebhookResponse,
@@ -11,6 +12,8 @@ from .connection import (
     GetConnectStatusResponse,
     GetConnectionResponse,
     GetConnectionWebhookResponse,
+    ImportConnectionsRequestBody,
+    ImportConnectionsResponse,
 )
 from .field_mapping import (
     CreateAccountFieldMappingRequestBody,
@@ -27,6 +30,7 @@ from .field_mapping import (
 from .metadata import CrmMetadata, CrmMetadataResponse, CrmStatus
 
 __all__ = [
+    "ConnectionImport",
     "ConnectionStatus",
     "CreateAccountFieldMappingRequestBody",
     "CreateAccountFieldMappingResponse",
@@ -48,6 +52,8 @@ __all__ = [
     "GetConnectionWebhookResponse",
     "GetFieldMappingConfigResponse",
     "GetFieldMappingsResponse",
+    "ImportConnectionsRequestBody",
+    "ImportConnectionsResponse",
     "MappableFieldType",
     "chat",
     "common",
