@@ -12,7 +12,14 @@ from .types import (
     TicketStatus,
     Tpid,
 )
-from .errors import BadRequestError, BaseError, InternalServerError, NotFoundError, UnAuthorizedError
+from .errors import (
+    BadRequestError,
+    BaseError,
+    InternalServerError,
+    NotFoundError,
+    NotImplementedError,
+    UnAuthorizedError,
+)
 from . import associations, errors, types, unified
 from .associations import (
     CompanyAssociation,
@@ -86,6 +93,7 @@ __all__ = [
     "LeadWrite",
     "Message",
     "NotFoundError",
+    "NotImplementedError",
     "Note",
     "NoteRead",
     "NoteWrite",

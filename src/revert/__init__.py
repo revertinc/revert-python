@@ -26,12 +26,14 @@ from .resources import (
     ImportConnectionsRequestBody,
     ImportConnectionsResponse,
     MappableFieldType,
+    TriggerSyncResponse,
     chat,
     common,
     connection,
     crm,
     field_mapping,
     metadata,
+    sync,
     ticket,
 )
 from .environment import RevertEnvironment
@@ -63,11 +65,13 @@ __all__ = [
     "ImportConnectionsResponse",
     "MappableFieldType",
     "RevertEnvironment",
+    "TriggerSyncResponse",
     "chat",
     "common",
     "connection",
     "crm",
     "field_mapping",
     "metadata",
+    "sync",
     "ticket",
 ]
