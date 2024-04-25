@@ -15,6 +15,8 @@ except ImportError:
 
 class SearchNotesResponse(pydantic.BaseModel):
     status: ResponseStatus
+    next: typing.Optional[str]
+    previous: typing.Optional[str]
     results: typing.List[Note]
 
     def json(self, **kwargs: typing.Any) -> str:

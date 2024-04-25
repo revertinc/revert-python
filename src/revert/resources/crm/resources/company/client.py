@@ -240,6 +240,8 @@ class CompanyClient:
         self,
         *,
         fields: typing.Optional[str] = None,
+        page_size: typing.Optional[str] = None,
+        cursor: typing.Optional[str] = None,
         search_criteria: typing.Any,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -250,6 +252,10 @@ class CompanyClient:
 
         Parameters:
             - fields: typing.Optional[str].
+
+            - page_size: typing.Optional[str].
+
+            - cursor: typing.Optional[str].
 
             - search_criteria: typing.Any.
 
@@ -262,7 +268,7 @@ class CompanyClient:
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/companies/search"),
-            params=remove_none_from_dict({"fields": fields}),
+            params=remove_none_from_dict({"fields": fields, "pageSize": page_size, "cursor": cursor}),
             json=jsonable_encoder({"searchCriteria": search_criteria}),
             headers=remove_none_from_dict(
                 {
@@ -501,6 +507,8 @@ class AsyncCompanyClient:
         self,
         *,
         fields: typing.Optional[str] = None,
+        page_size: typing.Optional[str] = None,
+        cursor: typing.Optional[str] = None,
         search_criteria: typing.Any,
         x_revert_api_token: str,
         x_revert_t_id: str,
@@ -511,6 +519,10 @@ class AsyncCompanyClient:
 
         Parameters:
             - fields: typing.Optional[str].
+
+            - page_size: typing.Optional[str].
+
+            - cursor: typing.Optional[str].
 
             - search_criteria: typing.Any.
 
@@ -523,7 +535,7 @@ class AsyncCompanyClient:
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/companies/search"),
-            params=remove_none_from_dict({"fields": fields}),
+            params=remove_none_from_dict({"fields": fields, "pageSize": page_size, "cursor": cursor}),
             json=jsonable_encoder({"searchCriteria": search_criteria}),
             headers=remove_none_from_dict(
                 {

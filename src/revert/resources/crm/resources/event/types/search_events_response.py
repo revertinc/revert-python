@@ -15,6 +15,8 @@ except ImportError:
 
 class SearchEventsResponse(pydantic.BaseModel):
     status: ResponseStatus
+    next: typing.Optional[str]
+    previous: typing.Optional[str]
     results: typing.List[Event]
 
     def json(self, **kwargs: typing.Any) -> str:

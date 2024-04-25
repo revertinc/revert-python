@@ -15,6 +15,8 @@ except ImportError:
 
 class SearchCompaniesResponse(pydantic.BaseModel):
     status: ResponseStatus
+    next: typing.Optional[str]
+    previous: typing.Optional[str]
     results: typing.List[Company]
 
     def json(self, **kwargs: typing.Any) -> str:
