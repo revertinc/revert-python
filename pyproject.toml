@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "revert-api"
-version = "0.0.922"
+version = "0.0.970"
 description = ""
 readme = "README.md"
 authors = []
