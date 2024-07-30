@@ -37,6 +37,7 @@ class EventClient:
         id: str,
         *,
         fields: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -49,6 +50,8 @@ class EventClient:
 
             - fields: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -58,7 +61,7 @@ class EventClient:
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"crm/events/{id}"),
-            params=remove_none_from_dict({"fields": fields}),
+            params=remove_none_from_dict({"fields": fields, "associations": associations}),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
@@ -89,6 +92,7 @@ class EventClient:
         fields: typing.Optional[str] = None,
         page_size: typing.Optional[str] = None,
         cursor: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -103,6 +107,8 @@ class EventClient:
 
             - cursor: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -112,7 +118,9 @@ class EventClient:
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/events"),
-            params=remove_none_from_dict({"fields": fields, "pageSize": page_size, "cursor": cursor}),
+            params=remove_none_from_dict(
+                {"fields": fields, "pageSize": page_size, "cursor": cursor, "associations": associations}
+            ),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
@@ -346,6 +354,7 @@ class AsyncEventClient:
         id: str,
         *,
         fields: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -358,6 +367,8 @@ class AsyncEventClient:
 
             - fields: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -367,7 +378,7 @@ class AsyncEventClient:
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"crm/events/{id}"),
-            params=remove_none_from_dict({"fields": fields}),
+            params=remove_none_from_dict({"fields": fields, "associations": associations}),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
@@ -398,6 +409,7 @@ class AsyncEventClient:
         fields: typing.Optional[str] = None,
         page_size: typing.Optional[str] = None,
         cursor: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -412,6 +424,8 @@ class AsyncEventClient:
 
             - cursor: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -421,7 +435,9 @@ class AsyncEventClient:
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/events"),
-            params=remove_none_from_dict({"fields": fields, "pageSize": page_size, "cursor": cursor}),
+            params=remove_none_from_dict(
+                {"fields": fields, "pageSize": page_size, "cursor": cursor, "associations": associations}
+            ),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),

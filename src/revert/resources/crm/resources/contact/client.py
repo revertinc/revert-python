@@ -37,6 +37,7 @@ class ContactClient:
         id: str,
         *,
         fields: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -49,6 +50,8 @@ class ContactClient:
 
             - fields: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -58,7 +61,7 @@ class ContactClient:
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"crm/contacts/{id}"),
-            params=remove_none_from_dict({"fields": fields}),
+            params=remove_none_from_dict({"fields": fields, "associations": associations}),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
@@ -89,6 +92,7 @@ class ContactClient:
         fields: typing.Optional[str] = None,
         page_size: typing.Optional[str] = None,
         cursor: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -103,6 +107,8 @@ class ContactClient:
 
             - cursor: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -112,7 +118,9 @@ class ContactClient:
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/contacts"),
-            params=remove_none_from_dict({"fields": fields, "pageSize": page_size, "cursor": cursor}),
+            params=remove_none_from_dict(
+                {"fields": fields, "pageSize": page_size, "cursor": cursor, "associations": associations}
+            ),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
@@ -308,6 +316,7 @@ class AsyncContactClient:
         id: str,
         *,
         fields: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -320,6 +329,8 @@ class AsyncContactClient:
 
             - fields: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -329,7 +340,7 @@ class AsyncContactClient:
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"crm/contacts/{id}"),
-            params=remove_none_from_dict({"fields": fields}),
+            params=remove_none_from_dict({"fields": fields, "associations": associations}),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
@@ -360,6 +371,7 @@ class AsyncContactClient:
         fields: typing.Optional[str] = None,
         page_size: typing.Optional[str] = None,
         cursor: typing.Optional[str] = None,
+        associations: typing.Optional[str] = None,
         x_revert_api_token: str,
         x_revert_t_id: str,
         x_api_version: typing.Optional[str] = None,
@@ -374,6 +386,8 @@ class AsyncContactClient:
 
             - cursor: typing.Optional[str].
 
+            - associations: typing.Optional[str].
+
             - x_revert_api_token: str. Your official API key for accessing revert apis.
 
             - x_revert_t_id: str. The unique customer id used when the customer linked their account.
@@ -383,7 +397,9 @@ class AsyncContactClient:
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "crm/contacts"),
-            params=remove_none_from_dict({"fields": fields, "pageSize": page_size, "cursor": cursor}),
+            params=remove_none_from_dict(
+                {"fields": fields, "pageSize": page_size, "cursor": cursor, "associations": associations}
+            ),
             headers=remove_none_from_dict(
                 {
                     **self._client_wrapper.get_headers(),
