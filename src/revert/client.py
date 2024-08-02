@@ -6,6 +6,7 @@ import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .environment import RevertEnvironment
+from .resources.ats.client import AsyncAtsClient, AtsClient
 from .resources.chat.client import AsyncChatClient, ChatClient
 from .resources.connection.client import AsyncConnectionClient, ConnectionClient
 from .resources.crm.client import AsyncCrmClient, CrmClient
@@ -28,6 +29,7 @@ class Revert:
             base_url=_get_base_url(base_url=base_url, environment=environment),
             httpx_client=httpx.Client(timeout=timeout) if httpx_client is None else httpx_client,
         )
+        self.ats = AtsClient(client_wrapper=self._client_wrapper)
         self.chat = ChatClient(client_wrapper=self._client_wrapper)
         self.connection = ConnectionClient(client_wrapper=self._client_wrapper)
         self.crm = CrmClient(client_wrapper=self._client_wrapper)
@@ -50,6 +52,7 @@ class AsyncRevert:
             base_url=_get_base_url(base_url=base_url, environment=environment),
             httpx_client=httpx.AsyncClient(timeout=timeout) if httpx_client is None else httpx_client,
         )
+        self.ats = AsyncAtsClient(client_wrapper=self._client_wrapper)
         self.chat = AsyncChatClient(client_wrapper=self._client_wrapper)
         self.connection = AsyncConnectionClient(client_wrapper=self._client_wrapper)
         self.crm = AsyncCrmClient(client_wrapper=self._client_wrapper)
